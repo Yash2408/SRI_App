@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result of Mixed CNT</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .table-content {
+            margin: 0 auto;
+        }
+        
+        .contain {
+            display: grid;
+            grid-template-areas: "head head" "table canvas" "equation equation" "number res" "ind capc";
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        
+        .head {
+            grid-area: head;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+            border-bottom: 1px solid grey;
+        }
+        
+        .table-content {
+            margin-top: 100px;
+            grid-area: table;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: azure;
+        }
+        
+        .mycanva {
+            grid-area: canvas;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .equation-head {
+            grid-area: equation;
+            height: 100px;
+            margin-top: 50px;
+            border: 0.5px solid;
+            padding-top: 10px;
+        }
+        
+        .equation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        
+        .numberOfSWCNT {
+            grid-area: number;
+            border: 0.5px solid;
+            display: flex;
+        }
+        
+        .resOfSWCNT {
+            grid-area: res;
+            border: 0.5px solid;
+        }
+        
+        .indOfSWCNT {
+            grid-area: ind;
+            border: 0.5px solid;
+        }
+        
+        .capcOfSWCNT {
+            grid-area: capc;
+            border: 0.5px solid;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .contain {
+                grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
+            .equation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body style="width: 100%;">
+    <div class="contain">
+        <div class="head" text-align:center ">
+            <h1 class="text-4xl ">Mixed Carbon Nanotube Bundle Interconnect</h1>
+        </div>
+        <div class="table-content ">
+            <table class="min-w-full divide-y divide-gray-200 ">
+                <thead class="bg-gray-50 ">
+                    <tr>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Properties
+                        </th>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Values
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class=" divide-y divide-gray-200 ">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Width (W)
+                        </td>
+                        <td id="w " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height (t)
+                        </td>
+                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter (d)
+                        </td>
+                        <td id="d " class="px-6 py-4 whitespace-nowrap ">
+                            12mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of SWCNTs in MWCNTs (n)
+                        </td>
+                        <td id="n " class="px-6 py-4 whitespace-nowrap ">
+                            20mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height abov ground (Hg)
+                        </td>
+                        <td id="hg " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter(min) of MWCNT (Dmin)
+                        </td>
+                        <td id="dmin " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of CNT (Ncnt)
+                        </td>
+                        <td id="ncnt " class="px-6 py-4 whitespace-nowrap ">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Type of Structure of Mixed CNT
+                        </td>
+                        <td id="str " class="px-6 py-4 whitespace-nowrap ">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register of lump (Rlump)
+                        </td>
+                        <td id="register1 " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register of Equivalent Single Conductor (Resc)
+                        </td>
+                        <td id="register2 " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Kinetic Inducatance of CNT (Lk)
+                        </td>
+                        <td id="inductanceK " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Magnetic Inductance of CNT (Lm)
+                        </td>
+                        <td id="inductanceM " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Total ESC Inductance (L)
+                        </td>
+                        <td id="inductanceT " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Electrostatic Capacitance (Ce)
+                        </td>
+                        <td id="capacitanceQ " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Quantum Capacitance (Cq)
+                        </td>
+                        <td id="capacitanceE " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance (C)
+                        </td>
+                        <td id="capacitanceT " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mycanva ">
+            <h3 class="row " style="margin-bottom: 50px; ">Structure of Mixed CNT :</h3>
+            <canvas id="myCanvas " style="border: 1.5px solid rgb(63, 63, 63); text-align: center; ">
+                Your browser does not support the canvas element.
+            </canvas>
+            
+        </div>
+        <div class="equation-head " style="text-align:center; ">
+            <h1>Equations</h1>
+            <p>Open in Desktop for better quality</p>
+        </div>
+        <div class="equation numberOfSWCNT ">
+            <div>
+                <h3>Number of Mixed CNT : </h3>
+            </div>
+            <div>
+                 <img src="../assets/img/numberMXCNT.gif " alt=" ">
+            </div>
+            
+           
+        </div>
+        <div class="equation resOfSWCNT ">
+            <h3>Resistance : </h3>
+            <img src="../assets/img/resMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation indOfSWCNT ">
+            <h3>Inducatance : </h3>
+            <img src="../assets/img/induMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation capcOfSWCNT ">
+            <h3>Capacitance : </h3>
+            <img src="../assets/img/capcMXCNT.gif " alt=" ">
+        </div>
+    </div>
+
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var w = Number(url.searchParams.get("w"));
+        var t = Number(url.searchParams.get("t"));
+        var d = Number(url.searchParams.get("d"));
+        var dmin = Number(url.searchParams.get("dmin"));
+        var no = Number(url.searchParams.get("n"));
+        var hg = Number(url.searchParams.get("hg"));
+        var str = String(url.searchParams.get("str"));
+        document.getElementById("w ").innerHTML = w;
+        document.getElementById("t ").innerHTML = t;
+        document.getElementById("d ").innerHTML = d;
+        document.getElementById("n ").innerHTML = no;
+        document.getElementById("hg ").innerHTML = hg;
+        document.getElementById("dmin ").innerHTML = dmin;
+ 
+        if(str==="mcb1"){
+            document.getElementById("str ").innerHTML = "MCB-I";
+        }
+        if(str==="mcb2"){
+            document.getElementById("str ").innerHTML = "MCB-II";
+        }
+        if(str==="mcb3"){
+            document.getElementById("str ").innerHTML = "MCB-III";
+        }
+        if(str==="mcb4"){
+            document.getElementById("str ").innerHTML = "MCB-IV";
+        }
+        if(str==="mcb5"){
+            document.getElementById("str ").innerHTML = "MCB-V";
+        }
+        if(str==="mcb6"){
+            document.getElementById("str ").innerHTML = "MCB-VI";
+        }
+
+        //Ncnt......................................................................................
+        var Ncnt;
+        var Nw = Math.floor((w-dmin)/(dmin+0.34))+1;
+        var Nh = Math.floor((t-dmin)/((Math.sqrt(3)/2)*(dmin+0.34)))+1;
+        
+        if(Nh%2 == 0){
+            Ncnt = Nw*Nh-(Nh/2);
+        }else{
+            Ncnt = Nw*Nh-((Nh-1)/2);
+        }
+        document.getElementById("ncnt ").innerHTML = Ncnt;
+        console.log("Nw=",Nw," Nh=",Nh," Ncnt=",Ncnt);
+
+        var dmax = dmin + 2*0.34*(no-1);
+        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
+        console.log("dmax=",dmax," Nshell=",Nshell);
+
+        //canvas...............................................................................
+         if(str === "mcb1"){
+             var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r+0.34,
+                y = r+0.34;
+            var n = 0,
+                j = 1;
+            while (x + r <= w/2-0.34) {
+                while (y + r <= t-0.34) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    y = y + r * Math.sqrt(3) + 0.34;
+                }
+                j++;
+                if (j % 2 === 0) y = d + 0.34;
+                else y = r+0.34;
+                x = x + d + 0.17;
+            }
+            console.log("Number of SWCNT 's = ", n);
+            Nx = Math.floor((a[n-1]+d)/(d+0.17));
+
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+
+            for (var i = 0; i < n; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            var c = [],
+                e = [];
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var r = dm / 2;
+            var x = a[n-1]+((no-1)*(0.34))+d/2+dmin/2+0.17;
+                y = r+0.4;
+            var nm = 0,
+                j = 1;
+            while (x + r <= w-0.17) {
+                while (y + r <= t-0.17) {
+                    c.push(x);
+                    e.push(y);
+                    nm++;
+                    y = y + r * Math.sqrt(3) + 0.34*(no-1);
+                }
+                j++;
+                if (j % 2 === 0) y = dm+0.34*(no-1);
+                else y=r+0.34;
+                x = x + dmin*2+0.34*(no-1);
+            }
+            
+            Nx=Nx+Math.floor((c[nm-1]-a[n-1]-(d/2)+r)/(dm));
+            console.log("Nx = ", Nx);
+
+            for (var i = 0; i < nm; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+        }
+        if(str === "mcb2"){
+            var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r+0.34,
+                y = r+0.34;
+            var n = 0,
+                j = 1;
+            while (y + r <= t/2) {
+                while (x + r <= w) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    x = x + d+0.17;
+                }
+                j++;
+                if (j % 2 === 0) x = d+0.34;
+                else x = r+0.34;
+                y = y + r * Math.sqrt(3) + 0.17;
+            }
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+
+            console.log("Number of SWCNT 's=", n);
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+
+            for (var i = 0; i < n; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            var c = [],
+                e = [];
+           
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var r = dm / 2;
+            var x = r+0.34;
+                y = b[n-1]+d/2+dmin/2+(no-1)*0.34+0.17;
+            var nm = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w) {
+                    c.push(x);
+                    e.push(y);
+                    nm++;
+                    x = x + dm + 0.34;
+                }
+                j++;
+                if (j % 2 === 0) x = dm+ 0.17;
+                else x = r+0.34;
+                y = y + r * Math.sqrt(3) + 0.34;
+            }
+
+            for (var i = 0; i < nm; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+            console.log(Nx);
+
+        }
+        if(str === "mcb3"){
+            var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r+0.34,
+                y = r+0.34;
+            var n = 0,Nx=0;
+
+            while(x+r<=w-0.34){
+                a.push(x);
+                b.push(y);
+                x = x + d+0.34;
+                n++;
+                Nx++;
+            }
+            console.log(a);
+            x=x - d - 0.34;
+            y=y+ r * Math.sqrt(3) + 0.34;
+            while(y+r<=t-0.34){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+                n++;
+            }
+            y=y-r*Math.sqrt(3)-0.34;
+            x = x - d - 0.34;
+            while(x-r>=0.34){
+                a.push(x);
+                b.push(y);
+                x = x - d - 0.34;
+                n++;
+            }
+            
+            if(x<0){
+                x=a[n-1];
+                y= y - r * Math.sqrt(3) - 0.34;
+            }
+            
+            while(y-r>=r-0.34){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+                n++;
+            }
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+            for (var i = 0; i < n; i++) {
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                ctx.stroke();
+            }
+
+            var maxX = Math.max(...a);
+            var maxY = Math.max(...b);
+
+            var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r*3+0.68,
+                y = r*3+0.68;
+            var n = 0;
+
+            while(x+r<=maxX-0.34){
+                a.push(x);
+                b.push(y);
+                x = x + d + 0.34;
+                n++;
+            }
+            x=x - d - 0.34;
+            y=y+ r * Math.sqrt(3) + 0.34;
+            while(y+r<=maxY-0.34){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+                n++;
+            }
+            y=y-r*Math.sqrt(3)-0.34;
+            x = x - d -0.34;
+            while(x-r>=d+r+0.34){
+                a.push(x);
+                b.push(y);
+                x = x - d - 0.34 ;
+                n++;
+            }
+            
+            if(x<0){
+                x=a[n-1];
+                y= y - r * Math.sqrt(3) - 0.34;
+            }
+            while(y-r>=d+0.34){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+                n++;
+            }
+
+            for (var i = 0; i < n; i++) {
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                ctx.stroke();
+            }
+
+            var maxX = Math.max(...a);
+            var maxY = Math.max(...b);
+
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var c = [],
+                e = [];
+            var r = dm / 2;
+            var x = 4*(d/2)+r+0.34*3,
+                y = 4*(d/2)+r+0.34*3;
+            var n = 0,
+                j = 1;
+            while (y + r <= maxY-d/2-0.34) {
+                while (x + r <= maxX-d/2-0.34) {
+                    c.push(x);
+                    e.push(y);
+                    n++;
+                    x = x + dm + 0.17;
+                }
+                j++;
+                if (j % 2 === 0) x = r + 4*(d/2) +r+0.34;
+                else x = 4*(d/2)+r+0.34*3;
+                y = y + r * Math.sqrt(3)+ 0.68;
+            }
+
+            for (var i = 0; i < n; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+            console.log(Nx);
+
+        }
+        if(str === "mcb4"){
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var a = [],
+                b = [];
+            var r = dm / 2;
+            var x = r+0.34,
+                y = r+0.34;
+            var n = 0,
+                j = 1;
+
+            while(x+r<=w-0.34){
+                a.push(x);
+                b.push(y);
+                x = x + dm+0.34;
+                n++;
+            }
+            x=x- dm - 0.34;
+            y=y+ r * Math.sqrt(3) + 0.34*(no-2);
+            while(y+r<=t-0.34){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+                n++;
+            }
+            y=y-r*Math.sqrt(3)-0.34;
+            x = x - dm - 0.34;
+            while(x-r>=0.34){
+                a.push(x);
+                b.push(y);
+                x = x - dm -0.34;
+                n++;
+            }
+            
+            if(x<0){
+                x=a[n-1];
+                y= y - r * Math.sqrt(3) - 0.34*(no - 2);
+            }
+            while(y-r>=r+0.34){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+                n++;
+            }
+            console.log(a,b);
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+
+            for (var i = 0; i < n; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(a[i] * 20, b[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+
+            var c = [],
+                e = [];
+            var r = d / 2;
+            var x = dm+r+0.68,
+                y = dm+r+0.68;
+            var ns = 0,
+                j = 1;
+            var maxX = Math.max(...a);
+            var maxY = Math.max(...b);
+            console.log(maxX, maxY);
+            while (y + r <= maxY-dm/2-0.34) {
+                while (x + r <= (maxX -dm/2-0.34)) {
+                    c.push(x);
+                    e.push(y);
+                    ns++;
+                    x = x + d + 0.17;
+                }
+                j++;
+                if (j % 2 === 0) x = dm+r*2+0.68;
+                else x = dm+r+0.68;
+                y = y + r * Math.sqrt(3)+0.34;
+            }
+            for (var i = 0; i < ns; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(c[i] * 20, e[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            console.log(Nx);
+
+        }
+
+        if(str === "mcb5"){
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var a = [],
+                b = [];
+            var r = dm / 2;
+            var x = r + 0.34,
+                y = r + 0.34;
+            var n = 0,
+                j = 1;
+            while (x + r <= w/2+r-0.34) {
+                while (y + r <= t-0.34) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    y = y + r * Math.sqrt(3) + 0.34*(no-1);
+                }
+                j++;
+                if (j % 2 === 0) y = r + 0.34*(no);
+                else y = r+0.34;
+                x = x + dm + 0.17;
+            }
+
+            var Nx=0;
+            Nx = Math.floor((a[n-1]+dm)/(dm+0.17));
+
+            var lastIndex = Math.max(...a);
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+            for (var i = 0; i < n; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(a[i] * 20, b[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+
+            var c = [],
+                e = [];
+            var r = d / 2;
+            var x = r+lastIndex+(no)*0.34+dmin/2,
+                y = r+0.34;
+            var ns = 0,
+                j = 1;
+            while (x + r <= w-0.34) {
+                while (y + r <= t-0.34) {
+                    c.push(x);
+                    e.push(y);
+                    ns++;
+                    y = y + r * Math.sqrt(3) + 0.68;
+                }
+                j++;
+                if (j % 2 === 0) y = r+r + 0.68;
+                else y = r+0.34;
+                x = x + d + 0.15;
+            }
+
+            Nx = Nx + Math.floor((c[ns-1]-a[n-1]-(dm/2)+r)/(d));
+            console.log("Nx=",Nx);
+
+            for (var i = 0; i < ns; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(c[i] * 20, e[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+
+        }
+
+        if(str === "mcb6"){
+            var circles = [];
+            var protection = 0;
+
+            while(circles.length < Ncnt/4){
+                var circle = {
+                    x: (Math.random()*((w-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    y: (Math.random()*((t-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    r: (dmin+2*0.34*(no - 1))/2
+                }
+                var overlapping = false;
+                for(var i=0; i < circles.length; i++){
+                    var other = circles[i];
+                    var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d1 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                protection++;
+                if(protection > 20000){
+                    break;
+                }
+                if(overlapping==false){
+                    circles.push(circle);
+                }
+            }
+            
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+            for (var i = 0; i < circles.length; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(circles[i].x * 20, circles[i].y * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+
+            var circles2 = [];
+            var protection = 0;
+
+            while(circles2.length < Ncnt/2){
+                var circle = {
+                    x: (Math.random()*((w-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
+                    y: (Math.random()*((t-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
+                    r: d/2
+                }
+                var overlapping = false;
+                for(var i=0; i < circles2.length; i++){
+                    var other = circles2[i];
+                    var d2 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d2 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                for(var i=0; i < circles.length; i++){
+                    var other = circles[i];
+                    var d2 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d2 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                protection++;
+                if(protection > 20000){
+                    break;
+                }
+                if(overlapping==false){
+                    circles2.push(circle);
+                }
+            }
+            
+
+            for (var i = 0; i < circles2.length; i++) {
+                // ctx.moveTo(circles[i].x * 20, capfirst[i].y * 20);
+                ctx.beginPath();
+                ctx.arc(circles2[i].x * 20, circles2[i].y * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            var Nx = Nw;
+        }
+
+
+
+        
+
+        //Nchannels............................................................................
+       var Nch=0;
+        for(var i=0;i<Nshell;i++){
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nch=Nch+(0.1161*Di)+0.2;
+            }else{
+                Nch=Nch+(2/3);
+            } 
+        }
+        var Ntotal = Ncnt*Nch;
+        //Resistance...........................................................................
+        var resistance1,resistance2,res1=0,res2=0;
+        var Rq = 6450;
+        var Rmc = 3500;
+        for(var i=1; i<=Nshell; i++){
+            var Nchi;
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nchi=(0.1161*Di)+0.2;
+            }else{
+                Nchi=(2/3);
+            } 
+            res1 = res1 + 1/((Rq/(Nchi))+Rmc);
+        }
+        resistance1 = Ncnt*(1/(res1*1000));
+        console.log(resistance1);
+        document.getElementById("register1 ").innerHTML = (resistance1/1000).toFixed(3)+" K\u2126 ";
+
+        for(var i=1; i<=Nshell; i++){
+            var Nchi;
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nchi=(0.1161*Di)+0.2;
+            }else{
+                Nchi=(2/3);
+            } 
+            var di = dmax - 2*0.34*(i-1);
+            res2 = res2 + (Nchi*1000*di)/Rq;
+        }
+        resistance2 = Ncnt*(1/res2);
+        console.log(resistance2);
+        document.getElementById("register2 ").innerHTML = (resistance2/1000).toFixed(3)+" K\u2126 ";
+
+        //Capacitance............................................................................
+        var Cq,Cqo=9.5*Math.pow(10,-11);
+        Cq = 2*Cqo*Ntotal;
+        console.log(Cq);
+        document.getElementById("capacitanceQ ").innerHTML = (Cq)+" F ";
+
+        var Ce = (2*3.14*2.2*8.85*Math.pow(10,-12)*Nx)/Math.acosh((dmax+(2*hg))/dmax);
+        console.log(Ce);
+        document.getElementById("capacitanceE ").innerHTML = Ce+" F ";
+
+        var C = (Cq*Ce)/(Cq+Ce);
+        document.getElementById("capacitanceT ").innerHTML = C+" F ";
+
+        //Inductance................................................................................
+        var e = 1.6*Math.pow(10, -19)
+        var Lk0 = 6.626*Math.pow(10, -34)/(2*e*e*8*Math.pow(10,5));
+        var Lk = Lk0/(2*Ntotal);
+        document.getElementById("inductanceK ").innerHTML = Lk+" H ";
+
+        var Lm = (2/Nx)*Math.pow(10,-7)*Math.log((dmax+(2*hg))/dmax);
+        document.getElementById("inductanceM ").innerHTML = Lm+" H ";
+
+        var L = Lk + Lm;
+        document.getElementById("inductanceT ").innerHTML = L+" H ";
+
+    </script>
+</body>
+
+</html>
